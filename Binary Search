@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+
+int BinarySearch(int arr[],int size,int element){
+    int low=0,high=size-1,mid;
+    while(low<=high){
+        mid = (low +high)/2;
+    if(arr[mid] == element)
+    return mid;
+    
+    if(arr[mid]<element)
+    low = mid+1;
+    
+    else
+    high = mid-1;
+    }
+return -1;    
+}
+
+int main(){
+    
+    int array[] = {11,32,895,976,983,1080,1156,1274,1322};
+    int size = sizeof(array)/sizeof(int);
+    int element =1156;
+    int hello = BinarySearch(array,size,element);
+    printf("The given element %d is found at index %d\n",element,hello);
+    
+    return 0;
+}
