@@ -1,0 +1,86 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<list>
+using namespace std;
+
+void display(vector<int> &v){
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
+}
+
+void display_list(list<int> &lst){
+    list<int> :: iterator it;
+    for(it = lst.begin();it!=lst.end();it++){
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+}
+
+int main(){
+    // vector<int> var1;
+    // int size,element;
+    // cout<<"Enter the size of vector: "<<endl;
+    // cin>>size;
+    
+    // for(int i=0;i<size;i++){
+    //     cout<<"Enter "<<i+1<<"th element:"<<endl;
+    //     cin>>element;
+    //     var1.push_back(element);
+    // }
+    
+//   var1.push_back(2);
+//   var1.push_back(22);
+//   var1.push_back(26);
+//   var1.push_back(222);
+//   var1.pop_back();
+//cout<<endl;
+    // display(var1);
+    
+    
+    list<int> list1;
+    list1.push_back(2);
+    list1.push_back(3);
+    list1.push_back(11);
+    list1.push_back(5);
+    list<int> :: iterator iter;
+    iter=list1.begin();
+    //display_list(list1);
+    
+    
+    list<int> list2(4);
+    list<int> :: iterator iterr;
+    iterr = list2.begin();
+    *iterr = 4;
+    iterr++;
+    *iterr = 211;
+    iterr++;
+    *iterr = 220;
+    iterr++;
+    *iterr = 84;
+   // iterr++;
+   
+   
+//   display_list(list2);
+    list1.sort();
+    list2.sort();
+    display_list(list1);
+    display_list(list2);
+//   list2.pop_front();
+//   list2.pop_back();
+//   list2.remove(34);
+//   display_list(list2) ;
+    
+    //list1.merge(list2);
+    list1.swap(list2);
+    cout<<list1.empty()<<endl;
+    display_list(list1);
+    
+    
+    
+    
+    
+    return 0;
+}
