@@ -1,0 +1,76 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+/*QueYou are given N ropes. A cut operation is performed on ropes such that all of them are reduced by the length of the smallest rope. Display the number of ropes left after every cut operation until the length of each rope is zero.
+
+Example 1:
+
+Input : arr[ ] = {5, 1, 1, 2, 3, 5} 
+Output : 4 3 2 
+Explanation: In the first operation, the 
+minimum ropes are 1 So, we reduce length 1 
+from all of them after reducing we left with 
+4 ropes and we do the same for rest. 
+*/
+
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+class Solution{
+    public:
+        vector<int> RopeCutting(int arr[], int n)
+    {
+        // Complete the function
+        vector<int> ar;
+        int j=0,count=0;
+        sort(arr,arr+n);
+        
+        while(arr[n-1]!=0) 
+        count=0;
+        {
+            for(int i=0;i<n;i++){
+                if(arr[i]==0)
+                    continue;
+                arr[i]=arr[i]-arr[0];
+                if(arr[i]!=0)
+                    count++;
+            }
+        
+        ar.push_back(count);
+        }
+        
+        return ar;
+        
+        
+        
+        
+    }
+};
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n+1];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    vector <int> v;
+    Solution ob;
+    v = ob.RopeCutting(arr,n);
+    for (int i : v){
+        cout<<i<<" ";
+    }
+    cout<<endl;
+    
+    return 0;
+}
