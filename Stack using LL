@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+struct Node{
+    int data;
+    struct Node * next;
+};
+ 
+struct Node* top = NULL;
+ 
+void linkedListTraversal(struct Node *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("Element: %d\n", ptr->data);
+        ptr = ptr->next; 
+    }
+}
+ 
+int isEmpty(struct Node* top){
+    if (top==NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+ 
+int isFull(struct Node* top){
+    struct Node* p = (struct Node*)malloc(sizeof(struct Node));
+    if(p==NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+ 
+struct Node* push(struct Node* top, int x){
+    if(isFull(top)){
+        printf("Stack Overflow\n");
+    }
+    else{
+        struct Node* p = (struct Node*) malloc(sizeof(struct Node));
+        p->data = x;
+        p->next = top;
+        top = p;
+        return top;
+    }
+}
+ 
+int pop(struct Node* tp){
+    if(isEmpty(tp)){
+        printf("Stack Underflow\n");
+    }
+    else{
+        struct Node* p = tp;
+        // int x = tp->data;
+        top = tp->next;
+       int x = tp->data;
+        free(p);
+        return x; 
+    }
+}
+ 
+int main(){
+    
+    
+    int choice , item;
+    printf("_____________MENU_______________\n");
+    printf("1 for push 2 for pop 3 for display\n");
+    
+    // printf("Enter choicw\n");
+    // scanf("%d",&choice);
+   for(;;){
+        printf("Enter choicw\n");
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+        printf("enter for push\n");
+        scanf("%d",&item);
+        top = push(top,item);
+        break;
+        case 2:
+         printf("Popped element is %d\n", pop(top));
+         break;
+         case 3:
+         linkedListTraversal(top);
+         break;
+         default:
+         printf("Invalid input\n");
+        //  return;
+    }
+   }
+    
+    
+    
+    
+    // top = push(top, 78);
+    // top = push(top, 7);
+    // top = push(top, 8);
+    
+    // linkedListTraversal(top);
+ 
+    //int element = pop(top); 
+    // printf("Popped element is %d\n", pop(top));
+    // linkedListTraversal(top);
+    return 0;
+}
+
