@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Queue{
+    int size;
+    int f;
+    int r;
+    int *arr;
+};
+int peek(struct Queue*q,int i){
+    if(q->f-i+1<0)
+    return -1;
+        
+        else
+        return q->arr[q->f-i+1];
+}
+
+
+int isEmpty(struct Queue*q){
+    if(q->r == q->f)
+    return 1;
+    else 
+    return 0;
+}
+
+int isFull(struct Queue*q){
+    if(q->r == q->size)
+    return 1;
+    else
+    return 0;
+}
+
+void enqueue(struct Queue*q,int data){
+    if(isFull(q))
+        printf("Queue is full,cannot Enqueue\n");
+    else{
+       // q->r++; OR ⬇
+        q->arr[++q->r] = data;
+        printf("Enqueued element is %d\n",data);
+    }
+}
+
+int dequeue(struct Queue*q){
+    int val=-1;     //initialising val variable to -1
+    if(isEmpty(q)){
+    printf("Queue is Empty So cannot Dequeue\n");
+    return -1;
+    }
+    else{
+       // q->f++; //OR ⬇
+        val = q->arr[++q->f];
+        printf("Element Dequeued of value %d\n",val);
+    }
+}
+
+int main()
+{
+    struct Queue*q = (struct Queue*)malloc(sizeof(struct Queue));
+    q->size = 5;
+    q->f = q->r = -1;
+    q->arr = (int*)malloc(q->size*sizeof(int));
+    
+    printf("Queue has been created Successfully\n");
+     printf("-----------------------------------\n");
+    enqueue(q,33);
+    enqueue(q,877);
+    enqueue(q,875);
+    enqueue(q,87);
+    enqueue(q,871);
+    enqueue(q,872);
+    printf("-----------------------------------\n");
+    dequeue(q);
+      dequeue(q);
+        dequeue(q);
+          dequeue(q);
+            dequeue(q);
+              dequeue(q);
+                dequeue(q);
+                  dequeue(q);
+                    dequeue(q);
+     printf("-----------------------------------\n");
+   
+ 
+   
+   
+   
+    if(isEmpty(q))
+        printf("Queue is Empty\n");
+    if(isFull(q))                       // V V Important don't write else if here to check both condition write if.
+        printf("Queue is full\n");
+  
+    return 0;
+}
