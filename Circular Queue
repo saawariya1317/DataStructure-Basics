@@ -1,0 +1,167 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+
+struct circularQueue
+{
+  int size;
+  int f;
+  int r;
+  int *arr;
+};
+
+int
+isEmpty (struct circularQueue *ptr)
+{
+  if (ptr->f == ptr->r)
+    return 1;
+  else
+    return 0;
+}
+
+int
+isFull (struct circularQueue *ptr)
+{
+  if ((ptr->r + 1) % ptr->size == ptr->f)
+    return 1;
+  else
+    return 0;
+}
+
+
+void
+enqueue (struct circularQueue *ptr, int data)
+{
+  if (isFull (ptr))
+    {
+      printf ("Queue is Full,cannot do dequeue operation\n");
+    }
+  else
+    {
+      ptr->r = (ptr->r + 1) % ptr->size;
+      ptr->arr[ptr->r] = data;
+       printf("Element %d Equeued in the queue\n",data);
+    }
+}
+
+int
+dequeue (struct circularQueue *ptr)
+{
+  // int data = -1;
+  if (isEmpty (ptr))
+    {
+      printf ("Queue is Empty Cannot dequeue\n");
+      return -1;
+    }
+  else
+    {
+
+      ptr->f = (ptr->f + 1) % ptr->size;
+      int data = ptr->arr[ptr->f];
+      return data;
+
+    }
+  // return data;
+}
+
+
+int
+main ()
+{
+  struct circularQueue *q =
+    (struct circularQueue *) malloc (sizeof (struct circularQueue));
+  q->size =82;
+  q->r = 0;
+  q->f = 0;
+  q->arr = (int *) malloc (q->size * sizeof (int));
+
+  printf ("Queue has been created Successfully\n");
+
+  // enqueue(q,5);
+  // enqueue(q,52);
+  // enqueue(q,45);
+  // enqueue(q,75);
+  // enqueue(q,578);
+
+  // // printf("dequeue element %d\n",dequeue(q));
+
+
+  // enqueue(q,85);
+  // enqueue(q,85);
+  // enqueue(q,65);
+  // enqueue(q,445);
+  // enqueue(q,511);
+  //  enqueue(q,51155);
+
+
+  //  printf("dequeue element %d\n",dequeue(q));
+
+  int choice;
+
+  int num;
+
+  do
+    {
+      printf
+	("\n--------MENU---------\n 1.enqueue 2.dequeue 3.isEmpty 4.isFull 5.quit\n");
+      printf ("enter your choice\n");
+      scanf ("%d", &choice);
+
+
+      switch (choice)
+	{
+	case 1:
+	  printf ("Enter number to enqueue\n");
+	  scanf ("%d", &num);
+	  enqueue (q, num);
+	 
+	  break;
+
+
+	case 2:
+	  printf ("dequeue element is %d\n", dequeue (q));
+	  break;
+
+
+	case 3:
+	  if (isEmpty (q))
+	    printf ("Queue is empty\n");
+	  else
+	    printf ("Not empty\n");
+	  break;
+
+
+	case 4:
+	  if (isFull (q))
+	    printf ("Queue is full\n");
+	  else
+	    printf ("Not full\n");
+	  break;
+
+
+	case 5:
+	  printf ("Quitting operations\n");
+	  break;
+
+	default:
+	  printf ("Invalid Input\n");
+	  //exit (0);
+
+}	}
+ while (choice != 5);
+
+
+
+      if (isEmpty (q))
+	{
+	  printf ("Queue is Empty\n");
+	}
+      if (isFull (q))
+	{
+	  printf ("Queue is Full\n");
+	}
+
+
+      return 0;
+    }
+
