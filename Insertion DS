@@ -1,0 +1,51 @@
+#include<stdio.h>
+
+void display(int arr[100],int size){
+        //Code of Traversal
+    for(int i=0;i<size;i++){
+        printf("%d\t",arr[i]);
+    }
+}
+
+int indexinsertion(int arr[100],int capacity,int size,int index,int element){
+    if(size>=capacity){
+        return -1;
+       // printf("Insertion cannot be done\n");
+    }
+    
+    else
+    for(int j=size-1;j>=index;j--){
+        arr[j+1] = arr[j];
+    }
+    
+
+
+arr[index] = element;
+
+
+}
+
+
+int main(){
+    
+    int arr[100] = {1,2,33,444,5555};
+    int size=5;
+    display(arr,size);
+    
+     indexinsertion(arr,100,size,2,23);
+     
+     printf("\n");
+     size+=1;   //or size++;
+    
+    display(arr,size);
+    
+    // indexinsertion(arr,100,size,4,50);
+    // printf("\n");
+    // size++;
+    // display(arr,size);
+    
+    
+    
+    return 0;
+    
+}
