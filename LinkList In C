@@ -1,0 +1,165 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+void LinkedListTraversal(struct Node*ptr){
+    while(ptr != NULL){
+        printf("Element %d\n",ptr->data);
+        ptr = ptr->next;
+    }
+}
+
+struct Node* InsertAtFirst(struct Node*head,int data){
+    
+    struct Node*ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    
+    ptr->next = head;
+    return ptr;
+}
+
+struct Node* InsertAtIndex(struct Node* head,int data, int index){
+    
+    struct Node*ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    
+    struct Node*p = head;
+    for(int i=0;i<index-1;i++){
+        p = p->next;
+    }
+    
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+
+struct Node* InsertAtEnd(struct Node* head,int data){
+    
+    struct Node*ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    
+    struct Node*p = head;
+    do{
+        p = p->next;
+    }while(p->next != NULL);
+    
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+
+struct Node* InsertAfterNode(struct Node* head,int data, struct Node*prevNode){
+    
+    struct Node*ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    
+    ptr->next = prevNode->next;
+    prevNode->next = ptr;
+    return head;
+}
+
+struct Node* DeleteAtFirst(struct Node* head){
+    
+    struct Node*p  = head;
+    head = head->next;
+    printf("Deleted First Node of the list which contain value %d\n",p->data);
+    free(p);
+    return head;
+}
+
+struct Node* DeleteAtIndex(struct Node* head,int index){
+    
+    struct Node*p  = head;
+    struct Node*q = head->next;
+    
+    for(int i=0;i<index-1;i++){
+        p= p->next;
+        q= q->next;
+    }
+// Now q is at node which have to Deleted
+
+    p->next = q->next;
+    printf("Deleted Node of the list which contain value %d\n",q->data);
+    free(q);
+    return head;
+}
+
+struct Node* DeleteAtEnd(struct Node* head){
+    
+    struct Node*p  = head;
+    struct Node*q = head->next;
+    do{ p= p->next;
+        q= q->next;
+    }while(q->next == NULL);
+    
+    p->next == NULL;  // p->next == q->next;
+    printf("Deleted Last Node of the list which contain value %d\n",q->data);
+    free(q);
+    return head;
+}
+
+struct Node* DeleteByValue(struct Node* head,int value){
+ struct Node*p  = head;
+ struct Node*q = head->next;
+    
+    while(q->data != value && q->next != NULL){
+        p=p->next;
+        q= q->next;
+    }
+    if(q->data == value){
+    p->next = q->next;
+    printf("Deleted Node of the list which contain value %d\n",q->data);
+    free(q);
+    }
+    return head;
+}
+
+int main()
+{
+    
+    struct Node*head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* B   = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* C   = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* D   = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* E   = (struct Node*)malloc(sizeof(struct Node));
+   
+    head->data = 13;
+    head->next = B;
+    
+    B->data = 14;
+    B->next = C;
+    
+    C->data = 15;
+    C->next = D;
+    
+    D->data = 16;
+    D->next = E;
+    
+    E->data = 17;
+    E->next = NULL;
+ 
+    printf("\n***Before Insertion Or Deletion the list Looks Like***\n");
+    LinkedListTraversal(head);
+    
+    head= InsertAtFirst(head,5);
+    // head= InsertAtIndex(head,4,2);
+    // head= InsertAtEnd(head,22);
+    // head= InsertAfterNode(head,44,C);
+    
+    // head = DeleteAtFirst(head);
+    // head = DeleteAtIndex(head,1);
+    // head = DeleteAtEnd(head);
+    // head = DeleteByValue(head,15);
+    
+    printf("\n***After Insertion Or Deletion the list Looks Like***\n");
+    LinkedListTraversal(head);
+    return 0;
+}
+
+
+
+
