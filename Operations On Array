@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+void traversal(int arr[],int size){
+    for(int i=0;i<size;i++){
+    printf("%d\t",arr[i]);
+        
+    }
+}
+
+int insertion(int arr[],int capacity,int size,int element,int index){
+    if(size>=capacity)
+    return -1;
+    
+    else{
+        for(int j=size-1;j>=index;j--){
+            arr[j+1]=arr[j];
+        }
+    }
+    arr[index]= element;
+}
+
+
+int deletion(int arr[],int size,int index){
+    if(index>=size)
+    return -1;
+    
+    else{
+        for(int k=index+1;k<size;k++)
+        arr[k-1]=arr[k];
+    }
+}
+
+int main(){
+    
+    int array[] = {1,2,43,422,78,94,75};
+    int length = sizeof(array)/sizeof(int);
+    printf("The length of array is %d\n",length);
+    traversal(array,length);
+    printf("\n");
+   // insertion(array,100,length,15,2);
+   // length++;
+   // traversal(array,length);
+   
+   deletion(array,length,2);
+   length--;
+   traversal(array,length);
+
+    return 0;
+}
+
